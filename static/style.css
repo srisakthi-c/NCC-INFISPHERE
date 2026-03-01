@@ -1,0 +1,696 @@
+/* ===============================
+   GLOBAL RESET & BASE
+================================ */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Segoe UI", sans-serif;
+  background: #0b0f1a;
+  color: #ffffff;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul {
+  list-style: none;
+}
+
+/* ===============================
+   BACKGROUND – TRICOLOUR
+================================ */
+.tricolor-bg {
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(circle at top, rgba(255,153,51,0.18), transparent),
+    radial-gradient(circle at center, rgba(255,255,255,0.12), transparent),
+    radial-gradient(circle at bottom, rgba(19,136,8,0.18), transparent);
+  animation: bgMove 15s linear infinite;
+  z-index: -1;
+}
+
+@keyframes bgMove {
+  0% { background-position: 0% 0%, 50% 50%, 100% 100%; }
+  100% { background-position: 100% 100%, 0% 0%, 50% 50%; }
+}
+
+/* ===============================
+   FIXED LOGIN BUTTON
+================================ */
+.login-fixed-btn {
+  position: fixed;
+  top: 18px;
+  right: 22px;
+  padding: 12px 28px;
+  background: linear-gradient(135deg, #ff9933, #ffffff, #138808);
+  color: #000;
+  font-weight: bold;
+  border-radius: 30px;
+  box-shadow: 0 0 20px rgba(255,153,51,0.6);
+  z-index: 9999;
+  transition: transform 0.3s ease;
+}
+
+.login-fixed-btn:hover {
+  transform: scale(1.08);
+}
+
+/* ===============================
+   CONTAINERS & SECTIONS
+================================ */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: auto;
+  padding: 100px 20px 40px;
+}
+
+.center {
+  text-align: center;
+}
+
+/* ===============================
+   GLASSMORPHIC CARDS
+================================ */
+.glass-box,
+.card {
+  background: rgba(255,255,255,0.08);
+  backdrop-filter: blur(18px);
+  border-radius: 22px;
+  padding: 30px;
+  margin: 25px auto;
+  box-shadow: 0 0 25px rgba(255,255,255,0.15);
+  animation: fadeUp 1s ease;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.glass-box:hover,
+.card:hover {
+  transform: perspective(900px) rotateX(4deg) rotateY(-4deg) scale(1.02);
+  box-shadow: 0 0 40px rgba(255,153,51,0.5),
+              0 0 60px rgba(19,136,8,0.4);
+}
+
+.glow {
+  box-shadow: 0 0 35px rgba(255,153,51,0.6);
+}
+
+/* ===============================
+   HEADINGS & TEXT
+================================ */
+h1 {
+  font-size: 2.8rem;
+  margin-bottom: 10px;
+}
+
+h2 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+h3 {
+  font-size: 1.4rem;
+  margin-bottom: 8px;
+}
+
+p {
+  line-height: 1.7;
+  opacity: 0.95;
+}
+
+/* Motto */
+.big-motto {
+  font-size: 3.5rem;
+  letter-spacing: 4px;
+  background: linear-gradient(90deg, #ff9933, #ffffff, #138808);
+  -webkit-background-clip: text;
+  color: transparent;
+  animation: pulse 2s infinite;
+}
+
+/* ===============================
+   BUTTONS
+================================ */
+.btn {
+  padding: 12px 28px;
+  border-radius: 30px;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+  background: linear-gradient(135deg, #ff9933, #ffffff, #138808);
+  color: #000;
+  transition: all 0.3s ease;
+}
+
+.btn:hover {
+  transform: scale(1.08);
+  box-shadow: 0 0 20px rgba(255,153,51,0.7);
+}
+
+/* ===============================
+   FORMS (LOGIN / REGISTER)
+================================ */
+form {
+  max-width: 420px;
+  margin: auto;
+}
+
+input, select, textarea {
+  width: 100%;
+  padding: 12px;
+  margin: 12px 0;
+  border-radius: 12px;
+  border: none;
+  background: rgba(255,255,255,0.15);
+  color: white;
+  outline: none;
+}
+
+input::placeholder {
+  color: rgba(255,255,255,0.6);
+}
+
+/* ===============================
+   DASHBOARDS (ADMIN / CADET)
+================================ */
+.dashboard {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 25px;
+}
+
+.stat-box {
+  text-align: center;
+}
+
+.stat-number {
+  font-size: 3rem;
+  background: linear-gradient(90deg, #ff9933, #ffffff, #138808);
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+/* ===============================
+   TABLES
+================================ */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+th, td {
+  padding: 14px;
+  text-align: center;
+}
+
+th {
+  background: rgba(255,255,255,0.2);
+}
+
+tr {
+  background: rgba(255,255,255,0.08);
+}
+
+tr:hover {
+  background: rgba(255,153,51,0.15);
+}
+
+/* ===============================
+   EVENTS & GALLERY
+================================ */
+.event-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
+}
+
+.event-img {
+  width: 100%;
+  border-radius: 16px;
+  box-shadow: 0 0 20px rgba(255,255,255,0.3);
+  transition: transform 0.3s ease;
+}
+
+.event-img:hover {
+  transform: scale(1.05);
+}
+
+/* ===============================
+   RANK LIST
+================================ */
+.rank-list li {
+  padding: 8px;
+  border-bottom: 1px solid rgba(255,255,255,0.2);
+}
+
+/* ===============================
+   FLOATING LOGO
+================================ */
+.floating-logo {
+  width: 120px;
+  margin: auto;
+  display: block;
+  animation: float 4s ease-in-out infinite;
+}
+
+/* ===============================
+   SCROLL INDICATOR
+================================ */
+.scroll-indicator {
+  position: fixed;
+  bottom: 25px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.scroll-indicator span {
+  width: 30px;
+  height: 50px;
+  border: 2px solid white;
+  border-radius: 25px;
+  display: block;
+  position: relative;
+}
+
+.scroll-indicator span::after {
+  content: "";
+  width: 6px;
+  height: 6px;
+  background: white;
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  animation: scrollDot 1.5s infinite;
+}
+
+/* ===============================
+   ANIMATIONS
+================================ */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse {
+  50% { text-shadow: 0 0 30px orange; }
+}
+
+@keyframes float {
+  50% { transform: translateY(-15px); }
+}
+
+@keyframes scrollDot {
+  0% { opacity: 0; top: 10px; }
+  50% { opacity: 1; }
+  100% { opacity: 0; top: 30px; }
+}
+
+/* ===============================
+   RESPONSIVE
+================================ */
+@media (max-width: 768px) {
+  h1 { font-size: 2.2rem; }
+  .big-motto { font-size: 2.6rem; }
+  .login-fixed-btn { padding: 10px 20px; }
+}
+/* ===== LOGIN UI ===== */
+
+.login-wrapper {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.glass-login {
+  width: 380px;
+  padding: 35px;
+  backdrop-filter: blur(18px);
+  background: rgba(255,255,255,0.08);
+  border-radius: 20px;
+  border: 1px solid rgba(255,255,255,0.2);
+  box-shadow: 0 0 40px rgba(0,255,255,0.2);
+  text-align: center;
+}
+
+.glass-login input,
+.glass-login select {
+  width: 100%;
+  margin: 12px 0;
+  padding: 12px;
+  background: rgba(0,0,0,0.6);
+  border: none;
+  color: white;
+  border-radius: 10px;
+}
+
+.btn-glow {
+  width: 100%;
+  margin-top: 15px;
+  padding: 12px;
+  border: none;
+  border-radius: 12px;
+  background: linear-gradient(90deg, #ff9933, #ffffff, #138808);
+  color: black;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 0 15px rgba(255,255,255,0.6);
+  transition: 0.3s;
+}
+
+.btn-glow:hover {
+  box-shadow: 0 0 30px rgba(255,255,255,1);
+  transform: scale(1.05);
+}
+
+/* ===== ADMIN DASHBOARD ===== */
+
+.admin-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 25px;
+}
+
+.glass-card {
+  padding: 20px;
+  background: rgba(255,255,255,0.08);
+  backdrop-filter: blur(12px);
+  border-radius: 18px;
+  box-shadow: 0 0 25px rgba(0,255,255,0.2);
+}
+
+.hover-glow:hover {
+  box-shadow: 0 0 40px rgba(0,255,255,0.6);
+}
+
+.btn-danger {
+  display: inline-block;
+  margin-top: 10px;
+  color: #ff4d4d;
+  font-weight: bold;
+}
+body {
+  background: radial-gradient(circle at top,
+    #ff6a00,
+    #ff0000,
+    #0a0a0a,
+    #000428,
+    #004e92
+  );
+  color: #fff;
+}
+
+.glass-card, .glass-section {
+  background: rgba(255,255,255,0.12);
+  backdrop-filter: blur(14px);
+  border-radius: 18px;
+  box-shadow:
+    0 0 20px rgba(255,140,0,0.6),
+    0 0 40px rgba(255,0,0,0.4),
+    0 0 60px rgba(0,90,255,0.3);
+}
+
+.neon-orange { box-shadow: 0 0 25px #ff9800; }
+.neon-red { box-shadow: 0 0 25px #ff1744; }
+.neon-blue { box-shadow: 0 0 25px #2979ff; }
+
+button {
+  background: linear-gradient(45deg,#ff9800,#ff1744);
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 10px;
+  font-weight: bold;
+}
+body {
+  background: radial-gradient(circle at top, #0b1d3a, #050814);
+  color: #fff;
+}
+
+.glass-card {
+  background: rgba(255,255,255,0.08);
+  backdrop-filter: blur(18px);
+  border-radius: 14px;
+  box-shadow:
+    0 0 25px rgba(255,170,0,0.3),
+    0 0 40px rgba(0,140,255,0.2);
+}
+
+.glow-title {
+  color: #ffb300;
+  text-shadow: 0 0 20px #ffb300;
+}
+
+.nav-btn.active {
+  background: linear-gradient(90deg, #ffb300, #ff6a00);
+  box-shadow: 0 0 20px #ffb300;
+}
+.profile-pic {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 3px solid rgba(0,255,255,0.6);
+  box-shadow: 0 0 15px rgba(0,255,255,0.6);
+  margin: 15px auto;
+  display: block;
+}
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.gallery-grid img {
+  width: 100%;
+  border-radius: 15px;
+  box-shadow: 0 0 20px rgba(255,0,255,0.5);
+}
+.rank-grid {
+  display: flex;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.rank-card {
+  padding: 30px;
+  font-size: 20px;
+  border-radius: 16px;
+  background: rgba(255,255,255,0.12);
+  position: relative;
+  cursor: pointer;
+}
+
+.rank-hover {
+  position: absolute;
+  bottom: -30px;
+  opacity: 0;
+  transition: 0.3s;
+  font-size: 18px;
+}
+
+.rank-card:hover .rank-hover {
+  opacity: 1;
+}
+.ncc-title {
+    text-align: center;
+    font-size: 80px;
+    font-weight: 1000;
+    letter-spacing: 5px;
+    color: #ff9933;
+    background: linear-gradient(
+        90deg,
+        #ff9933,
+        #ffffff,
+        #138808
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin: 20px 0;
+    text-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
+.home-images {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin-top: 40px;
+}
+
+.home-img {
+  width: 100px;
+  border-radius: 8px;
+}
+.hero-title {
+    padding: 60px 20px;
+    text-align: center;
+}
+.patriotic-hero {
+    text-align: center;
+    padding: 80px 20px 40px;
+}
+
+.patriotic-title {
+    font-size: 90px;                /* 🔥 BIG */
+    font-weight: 900;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+
+    background: linear-gradient(
+        90deg,
+        #ff9933,
+        #ffffff,
+        #138808
+    );
+
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    text-shadow:
+        0 0 10px rgba(255,153,51,0.8),
+        0 0 20px rgba(255,255,255,0.6),
+        0 0 30px rgba(19,136,8,0.8),
+        0 0 50px rgba(255,153,51,0.9);
+
+    animation: glowPulse 2.5s infinite alternate;
+}
+.ncc-title {
+    text-align: center;
+    font-size: 80px;          /* 🔥 LARGE */
+    font-weight: 900;
+    color: #0b2c5d;           /* NCC LOGO BLUE */
+    letter-spacing: 5px;
+    margin: 30px 0;
+    text-transform: uppercase;
+}
+.home-image {
+    margin-top: -30px;   /* 🔼 moves image UP */
+}
+.rank-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.rank-card {
+  position: relative;
+  background: rgba(0, 0, 0, 0.65);
+  border: 2px solid #c9a227; /* NCC gold */
+  padding: 25px;
+  text-align: center;
+  border-radius: 14px;
+  cursor: pointer;
+}
+
+.rank-title {
+  font-size: 26px;
+  color: #c9a227;
+  letter-spacing: 2px;
+}
+
+/* hidden cadets */
+.cadet-popup {
+  position: absolute;
+  top: 110%;
+  left: 0;
+  width: 100%;
+  background: rgba(15, 15, 15, 0.95);
+  border-radius: 12px;
+  padding: 15px;
+  display: none;
+  z-index: 10;
+}
+
+/* show on hover */
+.rank-card:hover .cadet-popup {
+  display: block;
+}
+
+.cadet-item {
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  color: #fff;
+}
+
+.cadet-item:last-child {
+  border-bottom: none;
+}
+.gallery-section {
+  padding: 50px 20px;
+  background: #0b1d33;
+  text-align: center;
+}
+
+.gallery-title {
+  font-size: 36px;
+  color: #ffcc00;
+  margin-bottom: 40px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 25px;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.gallery-card {
+  background: #111;
+  border-radius: 14px;
+  padding: 15px;
+  box-shadow: 0 0 18px rgba(255, 204, 0, 0.25);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* ❌ NO ROTATION / NO TILT */
+.gallery-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 0 28px rgba(255, 204, 0, 0.45);
+}
+
+.gallery-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;        /* keeps image straight */
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.gallery-card h4 {
+  color: #ffffff;
+  margin: 8px 0;
+  font-size: 18px;
+}
+
+.gallery-card p {
+  color: #ccc;
+  font-size: 14px;
+}
+
+.event-label {
+  color: #ff9933;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+
+
+
+
+
+
+
